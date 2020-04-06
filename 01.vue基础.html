@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div id="app">{{msg}}
+        <div @click="func">{{msg1.name}}:{{msg1.tel}}</div>
+        <div>{{likeFood[0]}},{{likeFood[1]}},{{likeFood[2]}},{{likeFood[3]}}</div>
+        <h3 v-text="msg2"></h3>
+        <h3 v-html="msg3"></h3>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '你好啊，小白！！！',
+                msg1: {
+                    name: 'wzf',
+                    tel: ' 999 - 999 - 999'
+                },
+                msg2: '臭弟弟',
+                msg3: '<p>真的菜</p>',
+                likeFood: ['香蕉', '苹果', '菠萝', '哈密瓜']
+            },
+            methods: {
+                func() {
+                    alert('你好啊，小白！！！！')
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

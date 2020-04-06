@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            border: 1px solid red;
+            margin: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <img :src="img" :class="isActive?'active':''" @click="change">
+        <br>
+        <img :src="img" :class="{active:isActive}" @click="change">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                img: "http://www.itheima.com/images/logo.png",
+                isActive: false
+            },
+            methods: {
+                change: function() {
+                    this.isActive = !this.isActive
+                    console.log(this.isActive)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

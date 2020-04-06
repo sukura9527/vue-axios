@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="msg">
+        <input type="button" value="" @click="change">
+        <h2>{{msg}}</h2>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '1234'
+            },
+            methods: {
+                change: function() {
+                    this.msg = '11111'
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
