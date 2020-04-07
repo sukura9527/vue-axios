@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>记事本</h1>
+        <input type="text" v-model="inputValue" @keyup.enter="add">
+        <ul>
+            <li v-for="(item,index) in list">{{index}}......{{item}} ----------------
+                <span @click="del(index) ">X</span></li>
+            <br>
+            <br>
+            <span v-if="list.length!=0">{{list.length}}条数据</span>
+            <input type="button" value="清空" @click="clear" v-if="list.length!=0">
+        </ul>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                list: ['写代码', '睡觉', '吃饭'],
+                inputValue: '来写点什么吧！'
+            },
+            methods: {
+                add: function() {
+                    this.list.push(this.inputValue)
+                },
+                del: function(index) {
+                    /* console.log(index) */
+                    this.list.splice(index, 1)
+                },
+                clear: function() {
+                    this.list = []
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
