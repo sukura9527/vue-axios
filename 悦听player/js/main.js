@@ -50,9 +50,8 @@ var app = new Vue({
         // 歌曲搜索
         searchMusic() {
             axios.get("https://autumnfish.cn/search?keywords=" + this.query).then(response => {
-                /* console.log(response) */
+                /*   console.log(response.data.result.songs) */
                 this.musicList = response.data.result.songs
-                    /* console.log(this.musicList) */
             }, function(err) {
                 console.log(err)
             })
@@ -60,29 +59,50 @@ var app = new Vue({
         // 歌曲播放
         playMusic(musicId) {
             axios.get("https://autumnfish.cn/song/url?id=" + musicId).then(response => {
-                /* console.log(response.data.data[0].url) */
-                this.musicUrl = response.data.data[0].url
-            }, function(err) {
-                console.log(err)
-            })
+                    /* console.log(response.data.data[0].url) */
+                    this.musicUrl = response.data.data[0].url
+                }, function(err) {
+                    console.log(err)
+                })
+                // 歌曲详情获取
             axios.get("https://autumnfish.cn/song/detail?ids=" + musicId).then(response => {
-                /* console.log(response.data.songs[0].al.picUrl) */
-                this.musicCover = response.data.songs[0].al.picUrl
+                    /* console.log(response.data.songs[0].al.picUrl) */
+                    this.musicCover = response.data.songs[0].al.picUrl
+                }, function(err) {
+                    console.log(err)
+                })
+                // 歌曲评论获取
+            axios.get("https://autumnfish.cn/comment/hot?type=0&id=" + musicId).then(response => {
+                /*  console.log(response.data.hotComments) */
+                this.hotComments = response.data.hotComments
             }, function(err) {
                 console.log(err)
             })
         },
-        // 歌曲详情获取
-
-
-        // 歌曲评论获取
-
         // 歌曲播放
-
+        play() {
+            /* console.log("play") */
+            this.isPlaying = true
+        },
         // 歌曲暂停
-
+        pause() {
+            /*    console.log("pause") */
+            this.isPlaying = false
+        },
         // 播放mv
+        playMv(mvid) {
+            axios.get("https://autumnfish.cn/mv/url?id=" + mvid).then(response => {
+                /*  console.log(response.data.data.url) */
+                this.mvUrl = response.data.data.url
+                this.isShow = true
 
+            }, function(err) {
+                console.log(err)
+            })
+        },
+        hide() {
+            this.isShow = false
+        }
         // 隐藏
     }
 });
